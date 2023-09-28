@@ -24,6 +24,9 @@
     <ClCompile Include="src\window_win.cpp">
       <Filter>头文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\gdiplus_render.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\controls.h">
@@ -44,7 +47,7 @@
     <ClInclude Include="src\surface.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\render_gdi.h">
+    <ClInclude Include="src\gdiplus_render.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

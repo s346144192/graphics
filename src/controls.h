@@ -6,17 +6,17 @@
 enum AnchorPoints:uint8_t {
 	TOPLEFT,TOP,TOPRIGHT,LEFT,CENTER,RIGHT,BOTTOMLEFT,BOTTOM,BOTTOMRIGHT
 };
-struct Pos {
+struct GS_Pos {
 	int x;
 	int y;
 };
-struct Size {
+struct GS_Size {
 	int width;
 	int height;
 };
-struct Rect:Pos, Size {
+struct GS_Rect:GS_Pos, GS_Size {
 };
-struct Color {
+struct GS_Color {
 	union Format{
 		struct RGBA {
 			uint8_t r,g,b,a;
@@ -39,12 +39,15 @@ struct Background {
 		Format_JPG,
 		Format_BMP,
 	};
+	Formats _format;
 	void* src;
-	Size size;
+	GS_Size size;
 	std::string file;
 };
 
-struct Font {
+typedef Background GS_Image;
+
+struct GS_Font {
 	char name[32];
 	uint16_t size;
 	void* src;
@@ -144,14 +147,14 @@ class Text :public Control {
 		JUSTIFYMIDDLE,
 		JUSTIFYBOTTOM,
 	};
-	Font _font;
+	GS_Font _font;
 	JustificationH _justification_h;
 	JustificationV _justification_v;
-	Color _highlight_color;
-	Color _disable_color;
-	Color _shadow_color;
-	Pos  _shadow_offset;
-	Pos _justification_offset;
+	GS_Color _highlight_color;
+	GS_Color _disable_color;
+	GS_Color _shadow_color;
+	GS_Pos  _shadow_offset;
+	GS_Pos _justification_offset;
 	std::string _text;
 	virtual ~Text();
 };
@@ -159,18 +162,19 @@ class TextArea :public Text {
 	float _line_height;
 	float _line_distance;
 	int _max_lines;
+	virtual ~TextArea();
 };
 class Highlight :public Control {
 	Background _file;
 	std::string _type;
 	std::string _mode;
 	std::string _layer_style;
-	Color _color;
+	GS_Color _color;
 };
 
 class Button :public Control {
 	Text* _text;
-	Pos  _down_text_offset;
+	GS_Pos  _down_text_offset;
 	Highlight* _focus_highlight;
 	Highlight* _mouse_over_highlight;
 	Background _backdrop;
@@ -202,6 +206,7 @@ class Slider :public Control {
 class ScrollBar :public Slider {
 	Button* _dec;
 	Button* _inc;
+	virtual ~ScrollBar();
 };
 
 class ListBox :public Control {
@@ -218,7 +223,7 @@ class Sprite :public Model {
 class Menu :public Control {
 	Background _backdrop;
 	Background _disable_backdrop;
-	Font* _font;
+	GS_Font* _font;
 	Highlight* _highlight;
 	float _item_height;
 	int _inset;

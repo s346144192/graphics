@@ -155,13 +155,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="src\gdiplus_render.cpp" />
     <ClCompile Include="src\trigger.cpp" />
     <ClCompile Include="src\window_win.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\controls.h" />
     <ClInclude Include="src\render.h" />
-    <ClInclude Include="src\render_gdi.h" />
+    <ClInclude Include="src\gdiplus_render.h" />
     <ClInclude Include="src\surface.h" />
     <ClInclude Include="src\trigger.h" />
     <ClInclude Include="src\window_base.h" />
